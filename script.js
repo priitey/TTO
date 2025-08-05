@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     title.addEventListener('mouseenter', function() {
-        this.style.animation = 'typing 2.5s steps(100, end) forwards';
+        this.style.animation = 'typing 3.5s steps(150, end) forwards';
     });
 
     title.addEventListener('mouseleave', function() {
-        this.style.animation = 'deleting 2.5s steps(100, end) forwards';
+        this.style.animation = 'deleting 3.5s steps(150, end) forwards';
     });
 });

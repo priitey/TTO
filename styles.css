@@ -65,8 +65,8 @@ main {
         letter-spacing: 0.325rem;
         position: absolute;
         left: 50%;
-        top: 49%;
-        transform: translate(-50%, -49%);
+        top: 45%;
+        transform: translate(-50%, -45%);
         overflow: hidden;
         white-space: nowrap;
         margin: 0 auto;
