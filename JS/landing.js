@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
             title.style.color = 'var(--fg)';
         } else {
             slideshow.style.display = 'flex';
-            title.style.mixBlendMode = 'exclusion';
+            title.style.mixBlendMode = 'difference';
             title.style.color = 'var(--bg)';
         }
     });
