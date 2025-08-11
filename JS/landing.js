@@ -67,16 +67,19 @@ document.addEventListener('DOMContentLoaded', function (event) {
             }
         }
     }
-    title.addEventListener('pointerenter', (event) => {
+    title.addEventListener('mouseenter', (event) => {
         typeWriter(fullTxt, title.textContent.length + 1, false);
     });
-    title.addEventListener('pointerleave', (event) => {
+    title.addEventListener('mouseleave', (event) => {
         typeWriter(fullTxt, title.textContent.length - 1, true);
     });
     // Toggle slideshow element
     title.addEventListener('click', (event) => {
-        // Toggle the entire slideshow container
-        if (slideshow.style.display !== 'none') {
+        // Get the actual, final style of the element
+        const computedStyle = window.getComputedStyle(slideshow);
+
+        // Toggle the entire slideshow container based on the computed style
+        if (computedStyle.display !== 'none') {
             slideshow.style.display = 'none';
             title.style.mixBlendMode = 'normal';
             title.style.color = 'var(--fg)';
