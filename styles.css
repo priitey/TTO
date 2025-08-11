@@ -19,6 +19,7 @@
     --header-font: 2.5em;
     --body-font: 0.77em;
     --fg: #000000;
+    --bg: #f3f3f3;
 }
 
 * {
@@ -55,26 +56,6 @@ main {
     z-index: 1;
     margin: 0;
     padding: 0;
-    > button#title {
-        appearance: none;
-        border: none;
-        background: none;
-        color: var(--fg);
-        font-size: var(--body-font);
-        font-family: 'Geist';
-        letter-spacing: 0.325rem;
-        position: absolute;
-        left: 50%;
-        top: 45%;
-        transform: translate(-50%, -45%);
-        overflow: hidden;
-        white-space: nowrap;
-        margin: 0 auto;
-        max-width: max-content;
-        cursor: pointer;
-        border: 1px none red;
-        padding: 20px;
-    }
     > #grid-container {
         display: grid;
         padding: 16px;
@@ -83,6 +64,7 @@ main {
         grid-template-rows: minmax(0, 1fr) repeat(9, minmax(0, 1fr));
         width: 100vw;
         height: 100vh;
+        z-index: 0;
         > div#date-time {
             display: flex;
             flex-direction: row;
@@ -92,6 +74,46 @@ main {
             grid-row: 1 / span 1;
             font-size: var(--body-font);
             color: var(--fg);
+        }
+        > div#title {
+            appearance: none;
+            border: none;
+            background: none;
+            color: var(--fg);
+            font-size: var(--body-font);
+            font-family: 'Geist';
+            letter-spacing: 0.325rem;
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            z-index: 99999;
+            transform: translate(-50%, -45%);
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            max-width: max-content;
+            cursor: pointer;
+            border: 1px none red;
+            padding: 20px;
+            mix-blend-mode: normal;
+        }
+        > div#slideshow {
+            display: none;
+            padding: 16px;
+            flex-direction: row;
+            justify-content: space-evenly;
+            gap: 16px;
+            border: 1px none red;
+            grid-column: 1 / -1;
+            grid-row: 3 / span 6;
+            > div.project-container {
+                min-width: 200px;
+                width: 22%;
+                min-height: 260px;
+                height: 100%;
+                border: 1px none red;
+                background: radial-gradient(rgb(24, 24, 24), rgba(209, 209, 209, 0.976));
+            }
         }
     }
 }

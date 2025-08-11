@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function (event) {
     const title = document.getElementById('title');
+    const slideshow = document.getElementById('slideshow');
+    const projects = document.querySelectorAll('.project-container');
     const family = document.getElementById('family');
     const dateTimeElement = document.getElementById('date-time');
 
@@ -70,5 +72,18 @@ document.addEventListener('DOMContentLoaded', function (event) {
     });
     title.addEventListener('pointerleave', (event) => {
         typeWriter(fullTxt, title.textContent.length - 1, true);
+    });
+    // Toggle slideshow element
+    title.addEventListener('click', (event) => {
+        // Toggle the entire slideshow container
+        if (slideshow.style.display !== 'none') {
+            slideshow.style.display = 'none';
+            title.style.mixBlendMode = 'normal';
+            title.style.color = 'var(--fg)';
+        } else {
+            slideshow.style.display = 'flex';
+            title.style.mixBlendMode = 'exclusion';
+            title.style.color = 'var(--bg)';
+        }
     });
 });
