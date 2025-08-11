@@ -1,37 +1,36 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function (event) {
     const title = document.getElementById('title');
     const family = document.getElementById('family');
     const dateTimeElement = document.getElementById('date-time');
 
-    // Live AEST time display
+    // TIME LOGIC HERE
     function updateDateTime() {
         const now = new Date();
-        
+
         const dateOptions = {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
             timeZone: 'Australia/Sydney'
         };
-        
+
         const timeOptions = {
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
+            hour12: false,
             timeZone: 'Australia/Sydney'
         };
-        
-        const dateStr = now.toLocaleDateString('en-AU', dateOptions);
-        const timeStr = now.toLocaleTimeString('en-AU', timeOptions);
-        
-        dateTimeElement.innerHTML = `${dateStr}<br>${timeStr}`;
-    }
 
-    // Update time immediately and then every second
+        const dateStr = now.toLocaleDateString('en-AU', dateOptions);
+        const timeStrRaw = now.toLocaleTimeString('en-AU', timeOptions);
+        const timeStr = timeStrRaw.replace(/:/g, ' - ');
+
+        dateTimeElement.innerHTML = `${timeStr}`;
+    }
     updateDateTime();
     setInterval(updateDateTime, 1000);
-
-    title.addEventListener('click', function() {
+    dateTimeElement.addEventListener('click', function () {
         const displayStyle = window.getComputedStyle(family).display;
         if (displayStyle === 'none') {
             document.documentElement.style.setProperty('--fg', '#ffffff');
@@ -42,11 +41,34 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    title.addEventListener('mouseenter', function() {
-        this.style.animation = 'typing 3.5s steps(150, end) forwards';
-    });
+    // TITLE LOGIC HERE
+    const fullTxt = "TTO BY LUCAS SAKELL & MATT PAPALEO";
+    const shortTxt = "TTO";
+    let animationTimeout;
+    title.textContent = shortTxt;
+    function typeWriter(text, i, isDeleting) {
+        clearTimeout(animationTimeout);
 
-    title.addEventListener('mouseleave', function() {
-        this.style.animation = 'deleting 3.5s steps(150, end) forwards';
+        title.textContent = text.substring(0, i);
+
+        if (isDeleting) {
+            if (i > shortTxt.length) {
+                animationTimeout = setTimeout(() => {
+                    typeWriter(text, i -1, true);
+                }, 30);
+            }
+        } else {
+            if (i < text.length) {
+                animationTimeout = setTimeout(() => {
+                    typeWriter(text, i + 1, false);
+                }, 50);
+            }
+        }
+    }
+    title.addEventListener('pointerenter', (event) => {
+        typeWriter(fullTxt, title.textContent.length + 1, false);
+    });
+    title.addEventListener('pointerleave', (event) => {
+        typeWriter(fullTxt, title.textContent.length - 1, true);
     });
 });
