@@ -1,0 +1,19 @@
+{
+    "project1": {
+        "title": "Project 01",
+        "tools": "InDesign, Photoshop",
+        "description": "Description here.",
+        "links": [
+            {"text": "", "url": ""}
+        ],
+        "images": [
+            {"path": "", "alt": ""}
+        ],
+        "videos": [
+            {"path": "", "type": "", "alt": ""}
+        ],
+        "iframe": [
+            {"id": "", "title": "", "width": "", "height": "", "src": ""}
+        ]
+    }
+}
