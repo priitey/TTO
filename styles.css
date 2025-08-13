@@ -68,6 +68,7 @@ main {
         container-type: inline-size;
         container-name: grid;
         > div#date-time {
+            z-index: 3;
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
@@ -96,7 +97,7 @@ main {
             margin: 0 auto;
             cursor: pointer;
             border: 1px none red;
-            padding: 0;
+            padding: 0 0 0 1px;
             mix-blend-mode: normal;
             max-width: 33px; /* Initial width */
             transition: max-width 2.5s ease-in-out;
@@ -126,6 +127,9 @@ main {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --body-font: 0.59em;
+    }
     main > #grid-container {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -174,9 +178,5 @@ main {
     }
     main > #grid-container > div#slideshow > div.project-container#p4 {
         display: none;
-    }
-
-    main > #grid-container > div#title {
-        font-size: calc(var(--body-font) * 0.79);
     }
 }
