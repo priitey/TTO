@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         const dateStr = now.toLocaleDateString('en-AU', dateOptions);
         const timeStrRaw = now.toLocaleTimeString('en-AU', timeOptions);
-        const timeStr = timeStrRaw.replace(/:/g, ' - ');
+        const timeStr = timeStrRaw.replace(/:/g, ' : ');
 
         dateTimeElement.innerHTML = `${timeStr}`;
     }
@@ -44,35 +44,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
     });
 
     // TITLE LOGIC HERE
-    const fullTxt = "TTO BY LUCAS SAKELL & MATT PAPALEO";
-    const shortTxt = "TTO";
-    let animationTimeout;
-    title.textContent = shortTxt;
-    function typeWriter(text, i, isDeleting) {
-        clearTimeout(animationTimeout);
-
-        title.textContent = text.substring(0, i);
-
-        if (isDeleting) {
-            if (i > shortTxt.length) {
-                animationTimeout = setTimeout(() => {
-                    typeWriter(text, i -1, true);
-                }, 30);
-            }
-        } else {
-            if (i < text.length) {
-                animationTimeout = setTimeout(() => {
-                    typeWriter(text, i + 1, false);
-                }, 50);
-            }
-        }
-    }
-    title.addEventListener('mouseenter', (event) => {
-        typeWriter(fullTxt, title.textContent.length + 1, false);
-    });
-    title.addEventListener('mouseleave', (event) => {
-        typeWriter(fullTxt, title.textContent.length - 1, true);
-    });
     // Toggle slideshow element
     title.addEventListener('click', (event) => {
         // Get the actual, final style of the element

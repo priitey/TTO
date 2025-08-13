@@ -96,6 +96,11 @@ main {
             border: 1px none red;
             padding: 20px;
             mix-blend-mode: normal;
+            width: 60px; /* Initial width */
+            transition: width 3.0s ease-in-out;
+            &:hover {
+                width: 100%;
+            }
         }
         > div#slideshow {
             display: none;
