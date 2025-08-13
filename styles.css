@@ -98,7 +98,7 @@ main {
             border: 1px none red;
             padding: 0;
             mix-blend-mode: normal;
-            max-width: 31px; /* Initial width */
+            max-width: 33px; /* Initial width */
             transition: max-width 2.5s ease-in-out;
             &:hover {
                 max-width: 800px;
