@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     const projects = document.querySelectorAll('.project-container');
     const family = document.getElementById('family');
     const dateTimeElement = document.getElementById('date-time');
+    const isMobile = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
     // TIME LOGIC HERE
     function updateDateTime() {
@@ -50,14 +51,26 @@ document.addEventListener('DOMContentLoaded', function (event) {
         const computedStyle = window.getComputedStyle(slideshow);
 
         // Toggle the entire slideshow container based on the computed style
-        if (computedStyle.display !== 'none') {
-            slideshow.style.display = 'none';
-            title.style.mixBlendMode = 'normal';
-            title.style.color = 'var(--fg)';
+        if (!isMobile) {
+            if (computedStyle.display !== 'none') {
+                slideshow.style.display = 'none';
+                title.style.mixBlendMode = 'normal';
+                title.style.color = 'var(--fg)';
+            } else {
+                slideshow.style.display = 'flex';
+                title.style.mixBlendMode = 'difference';
+                title.style.color = 'var(--bg)';
+            }
         } else {
-            slideshow.style.display = 'flex';
-            title.style.mixBlendMode = 'difference';
-            title.style.color = 'var(--bg)';
-        }
+            if (computedStyle.display !== 'none') {
+                slideshow.style.display = 'none';
+                title.style.mixBlendMode = 'normal';
+                title.style.color = 'var(--fg)';
+            } else {
+                slideshow.style.display = 'grid';
+                title.style.mixBlendMode = 'difference';
+                title.style.color = 'var(--bg)';
+            }
+        } 
     });
 });
