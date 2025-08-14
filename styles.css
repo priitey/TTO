@@ -37,6 +37,15 @@ body {
     padding: 0;
 }
 
+::selection {
+    color: white;
+    background-color: #ACCEF7;
+}
+::-moz-selection {
+    color: white;
+    background-color: #ACCEF7;
+}
+
 div#family {
     display: none;
     position: absolute;
