@@ -76,6 +76,60 @@ main {
         z-index: 0;
         container-type: inline-size;
         container-name: grid;
+        > div#tto {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 10px 10px 10px 10px;
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+            font-size: var(--body-font);
+            color: var(--fg);
+        }
+        > div#tto p {
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            width: fit-content;
+            height: fit-content;
+            letter-spacing: 0.025rem;
+        }
+        > div#about {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 10px 10px 10px 10px;
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+            font-size: var(--body-font);
+            color: var(--fg);
+        }
+        > div#about p {
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            width: fit-content;
+            height: fit-content;
+            letter-spacing: 0.025rem;
+        }
+        > div#contact {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin: 10px 10px 10px 10px;
+            grid-column: 8 / span 1;
+            grid-row: 1 / span 1;
+            font-size: var(--body-font);
+            color: var(--fg);
+        }
+        > div#contact p {
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            width: fit-content;
+            height: fit-content;
+            letter-spacing: 0.025rem;
+        }
         > div#date-time {
             z-index: 3;
             display: flex;
@@ -86,6 +140,7 @@ main {
             grid-row: 1 / span 1;
             font-size: var(--body-font);
             color: var(--fg);
+            letter-spacing: 0.025rem;
         }
         > div#title {
             appearance: none;

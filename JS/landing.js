@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         const timeStrRaw = now.toLocaleTimeString('en-AU', timeOptions);
         const timeStr = timeStrRaw.replace(/:/g, ' : ');
 
-        dateTimeElement.innerHTML = `${timeStr}`;
+        dateTimeElement.innerHTML = `${timeStrRaw}`;
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
