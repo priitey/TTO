@@ -302,6 +302,12 @@ main {
 
 @container grid (max-width: 768px) {
      /* --- HEADER: MOBILE LAYOUT (6x6 Grid) --- */
+    main > #grid-container > div#title {
+        max-width: max-content; /* Ensure the container fits the text */
+        transition: none; /* Disable the hover animation */
+        letter-spacing: 1px;
+    }
+
     main > #grid-container > div#tto {
         grid-column: 1 / span 1;
         grid-row: 1 / span 1;
@@ -330,14 +336,6 @@ main {
         justify-content: flex-end;
         align-items: flex-start;
         max-height: fit-content;
-    }
-
-    main > #grid-container > div#title {
-        transition: none;
-    }
-
-    main > #grid-container > div#title:active {
-        animation: expand-and-contract 3s ease-in-out;
     }
 
     main > #grid-container > div#slideshow {

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const title = document.getElementById('title');
 
     const slideshow = document.getElementById('slideshow');
+    const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0;
 
     // Group all content panes for easier management
     const allContent = [
@@ -52,6 +53,11 @@ document.addEventListener('DOMContentLoaded', function () {
     about.addEventListener('click', () => toggleContent(aboutCnt, true));
     contact.addEventListener('click', () => toggleContent(contactCnt, true));
     title.addEventListener('click', () => toggleContent([slideshow], false));
+
+    // --- Title hover animation logic ---
+    if (isMobile) {
+        title.textContent = "BY LUCAS SAKELL & MATT PAPALEO";
+    }
 
     // TIME & FAMILY LOGIC HERE
     const family = document.getElementById('family');
