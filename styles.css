@@ -332,6 +332,14 @@ main {
         max-height: fit-content;
     }
 
+    main > #grid-container > div#title {
+        transition: none;
+    }
+
+    main > #grid-container > div#title:active {
+        animation: expand-and-contract 3s ease-in-out;
+    }
+
     main > #grid-container > div#slideshow {
         grid-column: 1 / -1; /* Span all 6 columns */
         grid-row: 1 / -1;    /* Span all 6 rows */
@@ -377,4 +385,19 @@ main {
 
 .hidden {
     display: none;
+}
+
+@keyframes expand-and-contract {
+    0% {
+        max-width: 34px; /* Start at the initial width */
+    }
+    50% {
+        max-width: 800px; /* Expand to full width */
+    }
+    80% {
+        max-width: 800px; /* Hold at full width to create a pause */
+    }
+    100% {
+        max-width: 34px; /* Return to the initial width */
+    }
 }
