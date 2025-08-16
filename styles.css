@@ -26,6 +26,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Geist';
+    -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
