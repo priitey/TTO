@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Title hover animation logic ---
     if (isMobile) {
-        title.textContent = "BY LUCAS SAKELL & MATT PAPALEO";
+        title.textContent = "(WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
     }
 
     // TIME & FAMILY LOGIC HERE
