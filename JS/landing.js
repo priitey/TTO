@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // TIME & FAMILY LOGIC HERE
     const family = document.getElementById('family');
     const dateTimeElement = document.querySelector('#date-time p');
-    const dateTimeContainer = document.getElementById('date-time');
+    // const dateTimeContainer = document.getElementById('date-time');
     function updateDateTime() {
         const now = new Date();
         const timeOptions = {
@@ -90,13 +90,20 @@ document.addEventListener('DOMContentLoaded', function () {
     updateDateTime();
     setInterval(updateDateTime, 1000);
     dateTimeElement.addEventListener('click', function () {
-        const displayStyle = window.getComputedStyle(family).display;
-        if (displayStyle === 'none') {
-            document.documentElement.style.setProperty('--fg', '#ffffff');
-            family.style.display = 'block';
-        } else {
+        const familyIsVisible = window.getComputedStyle(family).display !== 'none';
+
+        if (familyIsVisible) {
             document.documentElement.style.setProperty('--fg', '#000000');
             family.style.display = 'none';
+        } else {
+            const slideshowIsVisible = slideshow.classList.contains('visible');
+            const aboutIsVisible = aboutCnt[0].classList.contains('visible');
+            const contactIsVisible = contactCnt[0].classList.contains('visible');
+
+            if (!slideshowIsVisible && !aboutIsVisible && !contactIsVisible) {
+                document.documentElement.style.setProperty('--fg', '#ffffff');
+                family.style.display = 'block';
+            }
         }
     });
 });
