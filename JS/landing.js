@@ -47,21 +47,35 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             title.classList.remove('hidden');
         }
-    }
 
+        // Add underlines to "tto" "about" & "contact" if their respective content is visible
+        about.querySelector('p').style.textDecoration = aboutCnt[0].classList.contains('visible') ? 'underline' : 'none';
+        contact.querySelector('p').style.textDecoration = contactCnt[0].classList.contains('visible') ? 'underline' : 'none';
+        tto.querySelector('p').style.textDecoration = slideshow.classList.contains('visible') ? 'underline' : 'none';
+    }
     tto.addEventListener('click', () => toggleContent([slideshow], false));
     about.addEventListener('click', () => toggleContent(aboutCnt, true));
     contact.addEventListener('click', () => toggleContent(contactCnt, true));
     title.addEventListener('click', () => toggleContent([slideshow], false));
 
-    // --- Title hover animation logic ---
+    // ABOUT IMAGES ROTATION LOGIC HERE
+    const lucas = document.getElementById('lucas');
+    const matt = document.getElementById('matt');
+    function rotateImage(img) {
+        img.classList.toggle('is-rotated');
+    }
+    lucas.addEventListener('click', () => rotateImage(lucas));
+    matt.addEventListener('click', () => rotateImage(matt));
+
+    // TITLE HOVER ANIMATION LOGIC HERE
     if (isMobile) {
         title.textContent = "(WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
     }
 
     // TIME & FAMILY LOGIC HERE
     const family = document.getElementById('family');
-    const dateTimeElement = document.getElementById('date-time');
+    const dateTimeElement = document.querySelector('#date-time p');
+    const dateTimeContainer = document.getElementById('date-time');
     function updateDateTime() {
         const now = new Date();
         const timeOptions = {
@@ -71,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
             hour12: false,
             timeZone: 'Australia/Sydney'
         };
-        dateTimeElement.innerHTML = now.toLocaleTimeString('en-AU', timeOptions);
+        dateTimeElement.textContent = now.toLocaleTimeString('en-AU', timeOptions);
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
