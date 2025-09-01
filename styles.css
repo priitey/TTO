@@ -144,7 +144,6 @@ main {
         }
         > div#title {
             appearance: none;
-            border: none;
             background: transparent;
             color: var(--fg);
             font-size: var(--body-font);
@@ -163,7 +162,7 @@ main {
             white-space: nowrap;
             cursor: pointer;
             border: 1px none red;
-            mix-blend-mode: normal;
+            mix-blend-mode: normal;           
         }
 
         /* --- Common Content Pane Styles --- */

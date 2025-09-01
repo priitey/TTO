@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (contentToShow[0] === slideshow) {
                 title.style.color = "var(--bg)";
                 title.style.mixBlendMode = "difference";
+                title.style.textShadow = "-1px -1px 0 #000";
                 if (!slideshowPopped) {
                     populate();
                     slideshowPopped = true;
@@ -97,24 +98,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!startTime) startTime = timestamp;
                 const elapsed = timestamp - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-
                 // Calculate how many characters should be visible at this point in time
                 const currentLength = Math.floor(startLength + (targetLength - startLength) * progress);
                 let newText = fullStr.substring(0, currentLength);
-
                 // Add the blinking cursor until the animation is complete
                 if (progress < 1) {
                     newText += '_';
                 }
-
                 title.textContent = newText;
-
                 // If the animation is not finished, request the next frame
                 if (progress < 1) {
                     animationFrameId = requestAnimationFrame(frame);
                 }
             };
-
             animationFrameId = requestAnimationFrame(frame);
         };
         title.addEventListener('mouseover', () => animateText(fullStr));
@@ -156,19 +152,15 @@ document.addEventListener('DOMContentLoaded', function () {
             images[currentIndex].classList.remove('active-slide');
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].classList.add('active-slide');
-
             // Check the type of the new image and set the interval accordingly
             const isImgGif = images[currentIndex].src.toLowerCase().includes('.gif');
             const intVal = isImgGif ? 5000 : 3000;
-
             // Schedule the next slide change
             setTimeout(nextSlide, intVal);
         };
-
         // Determine the interval for the first image
         const isFirstImgGif = images[currentIndex].src.toLowerCase().includes('.gif');
         const initialIntVal = isFirstImgGif ? 5000 : 3000;
-
         // Start the slideshow loop
         setTimeout(nextSlide, initialIntVal);
     }
