@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const title = document.getElementById('title');
 
     const slideshow = document.getElementById('slideshow');
+    const projectsContainer = document.getElementById('projects-container')
     const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0;
+    let slideshowPopped = false;
 
     // Group all content panes for easier management
     const allContent = [
@@ -32,6 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (contentToShow[0] === slideshow) {
                 title.style.color = "var(--bg)";
                 title.style.mixBlendMode = "difference";
+                if (!slideshowPopped) {
+                    populate();
+                    slideshowPopped = true;
+                }
             }
         } else {
             title.style.color = "var(--fg)";
@@ -70,6 +76,48 @@ document.addEventListener('DOMContentLoaded', function () {
     // TITLE HOVER ANIMATION LOGIC HERE
     if (isMobile) {
         title.textContent = "(WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
+    }
+
+    // SLIDESHOW LOGIC HERE
+    async function populate() {
+        const requestPath =
+            "ASSETS/projects.json";
+        const request = new Request(requestPath);
+
+        const response = await fetch(request);
+        const projects = await response.json();
+
+        populateSlideshow(projects);
+    }
+    function populateSlideshow(obj) {
+        for (const projectKey in obj) {
+            const projectData = obj[projectKey];
+
+            projectData.images.forEach(imageData => {
+                const projectImg = document.createElement("img");
+                projectImg.className = "showcase-img";
+                projectImg.src = imageData.path;
+                projectImg.alt = imageData.alt;
+                projectsContainer.appendChild(projectImg);
+            });
+        }
+        startAutomaticSlideshow();
+    }
+    function startAutomaticSlideshow() {
+        const images = projectsContainer.querySelectorAll('.showcase-img');
+        if (images.length <= 1) return;
+
+        let currentIndex = 0;
+        images[currentIndex].classList.add('active-slide'); // Show the first image
+
+        setInterval(() => {
+            // Hide the current image
+            images[currentIndex].classList.remove('active-slide');
+            // Move to the next image, looping back to the start
+            currentIndex = (currentIndex + 1) % images.length;
+            // Show the new image
+            images[currentIndex].classList.add('active-slide');
+        }, 3000); // Change image every 3 seconds
     }
 
     // TIME & FAMILY LOGIC HERE

@@ -1,13 +1,64 @@
 {
-    "project1": {
-        "title": "Project 01",
-        "tools": "InDesign, Photoshop",
+    "test1": {
+        "title": "Test 01",
+        "tools": "InDesign, Photoshop, Figma",
         "description": "Description here.",
         "links": [
             {"text": "", "url": ""}
         ],
         "images": [
-            {"path": "", "alt": ""}
+            {"path": "ASSETS/IMAGES/TESTGALLERY/5PointedPear.jpg", "alt": "A five pointed pear cross-section."}
+        ],
+        "videos": [
+            {"path": "", "type": "", "alt": ""}
+        ],
+        "iframe": [
+            {"id": "", "title": "", "width": "", "height": "", "src": ""}
+        ]
+    },
+    "test2": {
+        "title": "Test 02",
+        "tools": "InDesign, Photoshop, Figma",
+        "description": "Description here.",
+        "links": [
+            {"text": "", "url": ""}
+        ],
+        "images": [
+            {"path": "ASSETS/IMAGES/TESTGALLERY/carWash.gif", "alt": "A POV video of a car getting washed in a commercial car wash facility."}
+        ],
+        "videos": [
+            {"path": "", "type": "", "alt": ""}
+        ],
+        "iframe": [
+            {"id": "", "title": "", "width": "", "height": "", "src": ""}
+        ]
+    },
+    "test3": {
+        "title": "Test 03",
+        "tools": "InDesign, Photoshop, Figma",
+        "description": "Description here.",
+        "links": [
+            {"text": "", "url": ""}
+        ],
+        "images": [
+            {"path": "ASSETS/IMAGES/TESTGALLERY/jc.jpg", "alt": "A painting of Jesus Christ by Alan Christ."}
+        ],
+        "videos": [
+            {"path": "", "type": "", "alt": ""}
+        ],
+        "iframe": [
+            {"id": "", "title": "", "width": "", "height": "", "src": ""}
+        ]
+    },
+    "test4": {
+        "title": "Test 04",
+        "tools": "InDesign, Photoshop, Figma",
+        "description": "Description here.",
+        "links": [
+            {"text": "", "url": ""}
+        ],
+        "images": [
+            {"path": "ASSETS/IMAGES/TESTGALLERY/cashRoll.gif", "alt": "A video of a BMX athlete performing an aerial trick."}
         ],
         "videos": [
             {"path": "", "type": "", "alt": ""}
