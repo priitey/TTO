@@ -154,13 +154,13 @@ document.addEventListener('DOMContentLoaded', function () {
             images[currentIndex].classList.add('active-slide');
             // Check the type of the new image and set the interval accordingly
             const isImgGif = images[currentIndex].src.toLowerCase().includes('.gif');
-            const intVal = isImgGif ? 5000 : 3000;
+            const intVal = isImgGif ? 3300 : 1000;
             // Schedule the next slide change
             setTimeout(nextSlide, intVal);
         };
         // Determine the interval for the first image
         const isFirstImgGif = images[currentIndex].src.toLowerCase().includes('.gif');
-        const initialIntVal = isFirstImgGif ? 5000 : 3000;
+        const initialIntVal = isFirstImgGif ? 3300 : 1000;
         // Start the slideshow loop
         setTimeout(nextSlide, initialIntVal);
     }
