@@ -149,23 +149,20 @@ main {
             color: var(--fg);
             font-size: var(--body-font);
             font-family: 'Geist';
-            letter-spacing: 0.325rem;
+            letter-spacing: 0.239rem;
             position: static;
             transform: none;
-            grid-column: 5 / span 1;
+            grid-column: 4 / span 3;
             grid-row: 5 / span 1;
             width: 100%;
-            max-width: 100%;
             height: max-content;
             white-space: normal;
             z-index: 100000;
             text-align: center;
             overflow: hidden;
             white-space: nowrap;
-            margin: 0 auto;
             cursor: pointer;
             border: 1px none red;
-            padding: 0 0 0 1px;
             mix-blend-mode: normal;
         }
 

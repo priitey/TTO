@@ -74,14 +74,56 @@ document.addEventListener('DOMContentLoaded', function () {
     matt.addEventListener('click', () => rotateImage(matt));
 
     // TITLE HOVER ANIMATION LOGIC HERE
-    if (isMobile) {
-        title.textContent = "(WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
+    const baseStr = "TTO";
+    const fullStr = "TTO (WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
+    const mobStr = "(WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
+    if (title && isMobile) {
+        title.textContent = mobStr;
+    } else if (title && !isMobile) {
+        title.textContent = baseStr;
+        const duration = 1100;
+        let animationFrameId;
+
+        const animateText = (targetStr) => {
+            // Cancel any previous animation to prevent conflicts
+            cancelAnimationFrame(animationFrameId);
+
+            const startStr = title.textContent.replace('_', '');
+            const startLength = startStr.length;
+            const targetLength = targetStr.length;
+            let startTime;
+
+            const frame = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Calculate how many characters should be visible at this point in time
+                const currentLength = Math.floor(startLength + (targetLength - startLength) * progress);
+                let newText = fullStr.substring(0, currentLength);
+
+                // Add the blinking cursor until the animation is complete
+                if (progress < 1) {
+                    newText += '_';
+                }
+
+                title.textContent = newText;
+
+                // If the animation is not finished, request the next frame
+                if (progress < 1) {
+                    animationFrameId = requestAnimationFrame(frame);
+                }
+            };
+
+            animationFrameId = requestAnimationFrame(frame);
+        };
+        title.addEventListener('mouseover', () => animateText(fullStr));
+        title.addEventListener('mouseout', () => animateText(baseStr));
     }
 
     // SLIDESHOW LOGIC HERE
     async function populate() {
-        const requestPath =
-            "ASSETS/projects.json";
+        const requestPath = "ASSETS/projects.json";
         const request = new Request(requestPath);
 
         const response = await fetch(request);
@@ -108,16 +150,27 @@ document.addEventListener('DOMContentLoaded', function () {
         if (images.length <= 1) return;
 
         let currentIndex = 0;
-        images[currentIndex].classList.add('active-slide'); // Show the first image
+        images[currentIndex].classList.add('active-slide');
 
-        setInterval(() => {
-            // Hide the current image
+        const nextSlide = () => {
             images[currentIndex].classList.remove('active-slide');
-            // Move to the next image, looping back to the start
             currentIndex = (currentIndex + 1) % images.length;
-            // Show the new image
             images[currentIndex].classList.add('active-slide');
-        }, 3000); // Change image every 3 seconds
+
+            // Check the type of the new image and set the interval accordingly
+            const isImgGif = images[currentIndex].src.toLowerCase().includes('.gif');
+            const intVal = isImgGif ? 5000 : 3000;
+
+            // Schedule the next slide change
+            setTimeout(nextSlide, intVal);
+        };
+
+        // Determine the interval for the first image
+        const isFirstImgGif = images[currentIndex].src.toLowerCase().includes('.gif');
+        const initialIntVal = isFirstImgGif ? 5000 : 3000;
+
+        // Start the slideshow loop
+        setTimeout(nextSlide, initialIntVal);
     }
 
     // TIME & FAMILY LOGIC HERE
