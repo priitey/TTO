@@ -129,6 +129,7 @@ main {
         > div#tto {
             justify-content: flex-start;
             grid-column: 1 / span 1;
+            letter-spacing: 0.239rem;
         }
         > div#about {
             justify-content: flex-start;
@@ -145,6 +146,8 @@ main {
         > div#title {
             appearance: none;
             background: transparent;
+            border: 15px none red;
+            box-sizing: content-box;
             color: var(--fg);
             font-size: var(--body-font);
             font-family: 'Geist';
@@ -161,7 +164,6 @@ main {
             overflow: hidden;
             white-space: nowrap;
             cursor: pointer;
-            border: 1px none red;
             mix-blend-mode: normal;           
         }
 
@@ -181,7 +183,7 @@ main {
         > span#ack-about,
         > span#reach-out,
         > span#ack-contact {
-            font-size: var(--small-font);
+            font-size: var(--body-font);
             color: var(--fg);
         }
         /* --- Visibility Toggles --- */
@@ -225,7 +227,7 @@ main {
             margin: 0;
             padding: 0;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0s;
         }
         > div#slideshow > div#projects-container > img.showcase-img.active-slide {
             opacity: 1;
@@ -260,7 +262,7 @@ main {
             transform: rotate(-180deg);
         }
         > div#portraits > figure > figcaption {
-            font-size: var(--small-font);
+            font-size: var(--body-font);
             text-align: left;
         }
         > span#what-is-tto {
@@ -283,7 +285,7 @@ main {
             z-index: 99999;
             display: none;
             grid-row: 4 / span 2;
-            font-size: var(--small-font);
+            font-size: var(--body-font);
             color: var(--fg);
         }
         span#lucas-deets.visible,

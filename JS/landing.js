@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             title.style.color = "var(--fg)";
             title.style.mixBlendMode = "normal";
+            title.style.textShadow = "none";
         }
 
         // Determine if any content is visible now
@@ -58,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add underlines to "tto" "about" & "contact" if their respective content is visible
         about.querySelector('p').style.textDecoration = aboutCnt[0].classList.contains('visible') ? 'underline' : 'none';
         contact.querySelector('p').style.textDecoration = contactCnt[0].classList.contains('visible') ? 'underline' : 'none';
-        tto.querySelector('p').style.textDecoration = slideshow.classList.contains('visible') ? 'underline' : 'none';
     }
     tto.addEventListener('click', () => toggleContent([slideshow], false));
     about.addEventListener('click', () => toggleContent(aboutCnt, true));
@@ -168,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // TIME & FAMILY LOGIC HERE
     const family = document.getElementById('family');
     const dateTimeElement = document.querySelector('#date-time p');
-    // const dateTimeContainer = document.getElementById('date-time');
     function updateDateTime() {
         const now = new Date();
         const timeOptions = {
