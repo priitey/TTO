@@ -145,13 +145,14 @@ main {
         }
         > div#title {
             background: transparent;
-            border: 15px none red;
-            box-sizing: content-box;
             color: var(--fg);
             font-size: var(--body-font);
             font-family: 'Geist';
             letter-spacing: 0.239rem;
-            position: static;
+            position: relative;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
             transform: none;
             grid-column: 3 / span 5;
             grid-row: 5 / span 1;
@@ -163,7 +164,7 @@ main {
             overflow: hidden;
             white-space: nowrap;
             cursor: pointer;
-            mix-blend-mode: normal;           
+            mix-blend-mode: normal;
         }
         > div#title-overlay {
             appearance: none;
@@ -175,6 +176,8 @@ main {
             font-family: 'Geist';
             letter-spacing: 0.239rem;
             position: absolute;
+            padding: 0;
+            margin: 0;
             top: 0;
             left: 0;
             width: 100%;
