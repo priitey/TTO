@@ -5,18 +5,66 @@ document.addEventListener('DOMContentLoaded', function () {
     const contact = document.getElementById('contact');
     const contactCnt = document.querySelectorAll('.contact-content');
     const title = document.getElementById('title');
+    const titleOverlay = document.getElementById('title-overlay');
 
     const slideshow = document.getElementById('slideshow');
     const projectsContainer = document.getElementById('projects-container')
     const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0;
     let slideshowPopped = false;
-
-    // Group all content panes for easier management
     const allContent = [
         { trigger: tto, content: [slideshow] },
         { trigger: about, content: aboutCnt },
         { trigger: contact, content: contactCnt }
     ];
+
+    function updateTitleOverlayClipping() {
+        if (!slideshow.classList.contains('visible')) {
+            titleOverlay.style.clipPath = 'none';
+            titleOverlay.style.visibility = 'hidden';
+            return;
+        }
+
+        const slideshowRect = slideshow.getBoundingClientRect();
+        const titleRect = title.getBoundingClientRect();
+        
+        // Calculate intersection between title and slideshow
+        const intersectLeft = Math.max(slideshowRect.left, titleRect.left);
+        const intersectTop = Math.max(slideshowRect.top, titleRect.top);
+        const intersectRight = Math.min(slideshowRect.right, titleRect.right);
+        const intersectBottom = Math.min(slideshowRect.bottom, titleRect.bottom);
+        
+        // Convert to percentage of title dimensions for clip-path
+        const left = ((intersectLeft - titleRect.left) / titleRect.width) * 100;
+        const top = ((intersectTop - titleRect.top) / titleRect.height) * 100;
+        const right = ((intersectRight - titleRect.left) / titleRect.width) * 100;
+        const bottom = ((intersectBottom - titleRect.top) / titleRect.height) * 100;
+        
+        // Only show white text where title and slideshow intersect
+        if (intersectRight > intersectLeft && intersectBottom > intersectTop) {
+            titleOverlay.style.clipPath = `polygon(${left}% ${top}%, ${right}% ${top}%, ${right}% ${bottom}%, ${left}% ${bottom}%)`;
+            titleOverlay.style.visibility = 'visible';
+            
+            // Position the overlay exactly over the title
+            const titleStyles = window.getComputedStyle(title);
+            
+            // Match all relevant styling properties
+            titleOverlay.style.position = 'fixed'; // Use fixed to match viewport coordinates
+            titleOverlay.style.top = `${titleRect.top}px`;
+            titleOverlay.style.left = `${titleRect.left}px`;
+            titleOverlay.style.width = `${titleRect.width}px`;
+            titleOverlay.style.height = `${titleRect.height}px`;
+            titleOverlay.style.fontSize = titleStyles.fontSize;
+            titleOverlay.style.letterSpacing = titleStyles.letterSpacing;
+            titleOverlay.style.fontFamily = titleStyles.fontFamily;
+            titleOverlay.style.lineHeight = titleStyles.lineHeight;
+            titleOverlay.style.fontWeight = titleStyles.fontWeight;
+            titleOverlay.style.textAlign = titleStyles.textAlign;
+            titleOverlay.style.padding = titleStyles.padding;
+            titleOverlay.style.margin = titleStyles.margin;
+        } else {
+            titleOverlay.style.visibility = 'hidden';
+        }
+    }
 
     function toggleContent(contentToShow, hideTitleOnVisible) {
         // Check if the content we're about to show is already visible
@@ -32,18 +80,55 @@ document.addEventListener('DOMContentLoaded', function () {
             contentToShow.forEach(element => element.classList.add('visible'));
             // If the content we just made visible is the slideshow, apply special styles
             if (contentToShow[0] === slideshow) {
-                title.style.color = "var(--bg)";
-                title.style.mixBlendMode = "difference";
-                title.style.textShadow = "-1px -1px 0 #000";
+                // Copy text and style to overlay
+                titleOverlay.textContent = title.textContent;
+                
+                // Set up initial styling
+                const titleStyles = window.getComputedStyle(title);
+                Object.keys(titleStyles).forEach(key => {
+                    if (key.startsWith('font') || key.startsWith('letter') || key.startsWith('text') || 
+                        key === 'padding' || key === 'margin' || key === 'width' || key === 'height') {
+                        try {
+                            titleOverlay.style[key] = titleStyles[key];
+                        } catch (e) {
+                            // Some properties might not be settable, ignore these
+                        }
+                    }
+                });
+                
+                updateTitleOverlayClipping(); // Initial clipping update
+                
                 if (!slideshowPopped) {
                     populate();
                     slideshowPopped = true;
                 }
+                
+                // Add a mutation observer to keep text in sync
+                if (!window.titleObserver) {
+                    window.titleObserver = new MutationObserver(() => {
+                        titleOverlay.textContent = title.textContent;
+                        updateTitleOverlayClipping();
+                    });
+                    window.titleObserver.observe(title, { characterData: true, childList: true, subtree: true });
+                }
+                
+                // Update clipping on slideshow changes and animation frames
+                window.addEventListener('resize', updateTitleOverlayClipping);
+                requestAnimationFrame(function updateLoop() {
+                    if (slideshow.classList.contains('visible')) {
+                        updateTitleOverlayClipping();
+                        requestAnimationFrame(updateLoop);
+                    }
+                });
             }
         } else {
-            title.style.color = "var(--fg)";
-            title.style.mixBlendMode = "normal";
-            title.style.textShadow = "none";
+            // Reset when hiding
+            titleOverlay.style.visibility = 'hidden';
+            if (window.titleObserver) {
+                window.titleObserver.disconnect();
+                window.titleObserver = null;
+            }
+            window.removeEventListener('resize', updateTitleOverlayClipping);
         }
 
         // Determine if any content is visible now
@@ -64,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
     about.addEventListener('click', () => toggleContent(aboutCnt, true));
     contact.addEventListener('click', () => toggleContent(contactCnt, true));
     title.addEventListener('click', () => toggleContent([slideshow], false));
+    titleOverlay.addEventListener('click', () => toggleContent([slideshow], false));
 
     // ABOUT IMAGES ROTATION LOGIC HERE
     const lucas = document.getElementById('lucas');
@@ -106,6 +192,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     newText += '_';
                 }
                 title.textContent = newText;
+                titleOverlay.textContent = newText; // Update overlay text too
+                updateTitleOverlayClipping(); // Update clipping with new text length
+
                 // If the animation is not finished, request the next frame
                 if (progress < 1) {
                     animationFrameId = requestAnimationFrame(frame);
@@ -115,6 +204,8 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         title.addEventListener('mouseover', () => animateText(fullStr));
         title.addEventListener('mouseout', () => animateText(baseStr));
+        titleOverlay.addEventListener('mouseover', () => animateText(fullStr));
+        titleOverlay.addEventListener('mouseout', () => animateText(baseStr));
     }
 
     // SLIDESHOW LOGIC HERE

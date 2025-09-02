@@ -159,12 +159,34 @@ main {
             width: 100%;
             height: max-content;
             white-space: normal;
-            z-index: 100000;
+            z-index: 99998;
             text-align: center;
             overflow: hidden;
             white-space: nowrap;
             cursor: pointer;
             mix-blend-mode: normal;           
+        }
+        > div#title-overlay {
+            appearance: none;
+            background: transparent;
+            border: 15px none red;
+            box-sizing: content-box;
+            color: var(--bg); /* White text */
+            font-size: var(--body-font);
+            font-family: 'Geist';
+            letter-spacing: 0.239rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: max-content;
+            white-space: nowrap;
+            z-index: 100000;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+            pointer-events: auto;
+            mix-blend-mode: difference !important;
         }
 
         /* --- Common Content Pane Styles --- */
@@ -299,14 +321,14 @@ main {
             text-align: right;
         }
         > span#lucas-deets {
-            grid-column: 4 / span 1;
+            grid-column: 4 / span 2;
         }
         > span#matt-hash {
             grid-column: 5 / span 1;
             text-align: right;
         }
         > span#matt-deets {
-            grid-column: 6 / span 1;
+            grid-column: 6 / span 2;
         }
     }
 }
