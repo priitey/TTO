@@ -11,10 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const projectsContainer = document.getElementById('projects-container')
     const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0;
     let slideshowPopped = false;
+
+    // Add a state variable to track whether family should be shown
+    let familyEnabledByUser = false;
+
     const allContent = [
         { trigger: tto, content: [slideshow] },
-        { trigger: about, content: aboutCnt },
-        { trigger: contact, content: contactCnt }
+        { trigger: about, content: Array.from(aboutCnt) },
+        { trigger: contact, content: Array.from(contactCnt) }
     ];
 
     function updateTitleOverlayClipping() {
@@ -77,7 +81,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // If the clicked content was not already visible, show it.
         if (!isAlreadyVisible) {
+            // Always hide family when showing content
+            family.style.display = 'none';
+            document.documentElement.style.setProperty('--fg', '#000000');
+            dateTimeElement.style.cursor = "text";
             contentToShow.forEach(element => element.classList.add('visible'));
+            
             if (contentToShow[0] === slideshow) {
                 titleOverlay.textContent = title.textContent;
                 
@@ -120,13 +129,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
         } else {
-            // Reset when hiding
+            // Reset when hiding content
             titleOverlay.style.visibility = 'hidden';
             if (window.titleObserver) {
                 window.titleObserver.disconnect();
                 window.titleObserver = null;
             }
             window.removeEventListener('resize', updateTitleOverlayClipping);
+            
+            // THIS IS THE KEY CHANGE: Reset the familyEnabledByUser flag when toggling content off
+            // This ensures the family element won't reappear
+            familyEnabledByUser = false;
+            
+            // Check if any content is still visible
+            let anyContentStillVisible = false;
+            allContent.forEach(group => {
+                group.content.forEach(element => {
+                    if (element.classList.contains('visible')) {
+                        anyContentStillVisible = true;
+                    }
+                });
+            });
+            
+            if (!anyContentStillVisible) {
+                // Always hide family when toggling content off
+                family.style.display = 'none';
+                document.documentElement.style.setProperty('--fg', '#000000');
+                dateTimeElement.style.cursor = "pointer";
+                title.classList.remove('hidden');
+            }
         }
 
         // Determine if any content is visible now
@@ -272,21 +303,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
+    
     dateTimeElement.addEventListener('click', function () {
         const familyIsVisible = window.getComputedStyle(family).display !== 'none';
 
+        // Check if any content is visible
+        const slideshowIsVisible = slideshow.classList.contains('visible');
+        const aboutIsVisible = aboutCnt[0].classList.contains('visible');
+        const contactIsVisible = contactCnt[0].classList.contains('visible');
+        const anyContentVisible = slideshowIsVisible || aboutIsVisible || contactIsVisible;
+
         if (familyIsVisible) {
+            // Hide the family element
+            familyEnabledByUser = false;
             document.documentElement.style.setProperty('--fg', '#000000');
             family.style.display = 'none';
-        } else {
-            const slideshowIsVisible = slideshow.classList.contains('visible');
-            const aboutIsVisible = aboutCnt[0].classList.contains('visible');
-            const contactIsVisible = contactCnt[0].classList.contains('visible');
-
-            if (!slideshowIsVisible && !aboutIsVisible && !contactIsVisible) {
-                document.documentElement.style.setProperty('--fg', '#ffffff');
-                family.style.display = 'block';
-            }
+        } else if (!anyContentVisible) {
+            // Only show family if no content is visible
+            familyEnabledByUser = true;
+            document.documentElement.style.setProperty('--fg', '#ffffff');
+            family.style.display = 'block';
+            dateTimeElement.style.cursor = "pointer";
         }
     });
 });
