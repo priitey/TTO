@@ -434,6 +434,22 @@ main {
         grid-column: 2 / span 9;
         grid-row: 8 / span 1;
     }
+    main > #grid-container > span#lucas-label {
+        z-index: 99999;
+        display: none;
+        grid-column: 2 / span 3;
+        grid-row: 5 / span 1;
+        font-size: var(--body-font);
+    }
+    main > #grid-container > span#matt-label {
+        z-index: 99999;
+        display: none;
+        grid-column: 6 / span 5;
+        grid-row: 5 / span 1;
+        font-size: var(--body-font);
+        padding-left: calc(11%);
+    }
+
 
     /* --- CONTACT CONTENT: MOBILE LAYOUT --- */
     main > #grid-container > span#reach-out {
