@@ -177,7 +177,10 @@ document.addEventListener('DOMContentLoaded', function () {
             hour12: false,
             timeZone: 'Australia/Sydney'
         };
-        dateTimeElement.textContent = now.toLocaleTimeString('en-AU', timeOptions);
+        const rawStr = now.toLocaleTimeString('en-AU', timeOptions);
+        const regex = /:/g;
+        const edtStr = rawStr.replace(regex, "–");
+        dateTimeElement.textContent = edtStr;
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
