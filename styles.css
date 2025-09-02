@@ -303,7 +303,7 @@ main {
             grid-column: 5 / span 3;
             grid-row: 5 / span 1;
             font-size: var(--body-font);
-            padding-left: calc(50% + 5px);
+            padding-left: calc(16% + 5px);
         }
         > span#lucas-label.visible,
         > span#matt-label.visible {
