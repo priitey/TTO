@@ -360,7 +360,7 @@ main {
     :root {
         --header-font: 1.5em;
         --small-font: 0.53em;
-        --body-font: 0.59em;
+        --body-font: 0.56em;
     }
     main > #grid-container {
         grid-template-columns: repeat(11, 1fr);
