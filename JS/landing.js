@@ -32,24 +32,24 @@ document.addEventListener('DOMContentLoaded', function () {
             titleOverlay.style.visibility = 'hidden';
             return;
         }
-    
+
         // Get the currently active slide image
         const currentSlideImg = getCurrentSlideImage();
         if (!currentSlideImg) {
             titleOverlay.style.visibility = 'hidden';
             return;
         }
-    
+
         const slideImgRect = currentSlideImg.getBoundingClientRect();
         const titleRect = title.getBoundingClientRect();
-    
+
         // Calculate the actual rendered dimensions of the image
         // considering object-fit: contain behavior
         const imgNaturalRatio = currentSlideImg.naturalWidth / currentSlideImg.naturalHeight;
         const containerRatio = slideImgRect.width / slideImgRect.height;
-        
+
         let renderedWidth, renderedHeight, offsetX = 0, offsetY = 0;
-        
+
         if (imgNaturalRatio > containerRatio) {
             // Image is wider than container (relative to their heights)
             // Width will be constrained to container width
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Center horizontally
             offsetX = (slideImgRect.width - renderedWidth) / 2;
         }
-        
+
         // Adjust slide image rect to actual rendered dimensions
         const adjustedImgRect = {
             left: slideImgRect.left + offsetX,
@@ -75,27 +75,27 @@ document.addEventListener('DOMContentLoaded', function () {
             width: renderedWidth,
             height: renderedHeight
         };
-        
+
         // Calculate intersection between title and actual image area
         const intersectLeft = Math.max(adjustedImgRect.left, titleRect.left);
         const intersectTop = Math.max(adjustedImgRect.top, titleRect.top);
         const intersectRight = Math.min(adjustedImgRect.right, titleRect.right);
         const intersectBottom = Math.min(adjustedImgRect.bottom, titleRect.bottom);
-        
+
         // Convert to percentage of title dimensions for clip-path
         const left = ((intersectLeft - titleRect.left) / titleRect.width) * 100;
         const top = ((intersectTop - titleRect.top) / titleRect.height) * 100;
         const right = ((intersectRight - titleRect.left) / titleRect.width) * 100;
         const bottom = ((intersectBottom - titleRect.top) / titleRect.height) * 100;
-        
+
         // Only show white text where title and active image intersect
         if (intersectRight > intersectLeft && intersectBottom > intersectTop) {
             titleOverlay.style.clipPath = `polygon(${left}% ${top}%, ${right}% ${top}%, ${right}% ${bottom}%, ${left}% ${bottom}%)`;
             titleOverlay.style.visibility = 'visible';
-            
+
             // Position the overlay exactly over the title
             const titleStyles = window.getComputedStyle(title);
-            
+
             // Match all relevant styling properties
             titleOverlay.style.position = 'fixed'; // Use fixed to match viewport coordinates
             titleOverlay.style.top = `${titleRect.top}px`;
@@ -251,12 +251,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const startStr = title.textContent.replace('_', '');
             const startLength = startStr.length;
             const targetLength = targetStr.length;
+            const characterDifference = Math.abs(targetLength - startLength);
+            const adjustedDuration = Math.max(300, characterDifference * 50);
             let startTime;
 
             const frame = (timestamp) => {
                 if (!startTime) startTime = timestamp;
                 const elapsed = timestamp - startTime;
-                const progress = Math.min(elapsed / duration, 1);
+                const progress = Math.min(elapsed / adjustedDuration, 1);
                 // Calculate how many characters should be visible at this point in time
                 const currentLength = Math.floor(startLength + (targetLength - startLength) * progress);
                 let newText = fullStr.substring(0, currentLength);
