@@ -274,7 +274,7 @@ main {
             object-fit: cover;
             transform: rotate(0deg);
             cursor: pointer;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.0s;
         }
         > div#portraits > figure > img.is-rotated#lucas {
             transform: rotate(180deg);
