@@ -78,9 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // If the clicked content was not already visible, show it.
         if (!isAlreadyVisible) {
             contentToShow.forEach(element => element.classList.add('visible'));
-            // If the content we just made visible is the slideshow, apply special styles
             if (contentToShow[0] === slideshow) {
-                // Copy text and style to overlay
                 titleOverlay.textContent = title.textContent;
                 
                 // Set up initial styling
@@ -96,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
                 
-                updateTitleOverlayClipping(); // Initial clipping update
+                updateTitleOverlayClipping();
                 
                 if (!slideshowPopped) {
                     populate();
@@ -141,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
             title.classList.remove('hidden');
         }
 
-        // Add underlines to "tto" "about" & "contact" if their respective content is visible
         about.querySelector('p').style.textDecoration = aboutCnt[0].classList.contains('visible') ? 'underline' : 'none';
         contact.querySelector('p').style.textDecoration = contactCnt[0].classList.contains('visible') ? 'underline' : 'none';
     }
