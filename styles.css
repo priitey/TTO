@@ -144,7 +144,6 @@ main {
             grid-column: 9 / span 1;
         }
         > div#title {
-            appearance: none;
             background: transparent;
             border: 15px none red;
             box-sizing: content-box;

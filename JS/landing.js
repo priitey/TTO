@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const titleOverlay = document.getElementById('title-overlay');
 
     const slideshow = document.getElementById('slideshow');
+    const slideshowImg = document.querySelector('#projects-container img.active-slide');
     const projectsContainer = document.getElementById('projects-container')
     const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0;
     let slideshowPopped = false;
@@ -21,21 +22,65 @@ document.addEventListener('DOMContentLoaded', function () {
         { trigger: contact, content: Array.from(contactCnt) }
     ];
 
+    function getCurrentSlideImage() {
+        return document.querySelector('#projects-container img.showcase-img.active-slide');
+    }
+
     function updateTitleOverlayClipping() {
         if (!slideshow.classList.contains('visible')) {
             titleOverlay.style.clipPath = 'none';
             titleOverlay.style.visibility = 'hidden';
             return;
         }
-
-        const slideshowRect = slideshow.getBoundingClientRect();
+    
+        // Get the currently active slide image
+        const currentSlideImg = getCurrentSlideImage();
+        if (!currentSlideImg) {
+            titleOverlay.style.visibility = 'hidden';
+            return;
+        }
+    
+        const slideImgRect = currentSlideImg.getBoundingClientRect();
         const titleRect = title.getBoundingClientRect();
+    
+        // Calculate the actual rendered dimensions of the image
+        // considering object-fit: contain behavior
+        const imgNaturalRatio = currentSlideImg.naturalWidth / currentSlideImg.naturalHeight;
+        const containerRatio = slideImgRect.width / slideImgRect.height;
         
-        // Calculate intersection between title and slideshow
-        const intersectLeft = Math.max(slideshowRect.left, titleRect.left);
-        const intersectTop = Math.max(slideshowRect.top, titleRect.top);
-        const intersectRight = Math.min(slideshowRect.right, titleRect.right);
-        const intersectBottom = Math.min(slideshowRect.bottom, titleRect.bottom);
+        let renderedWidth, renderedHeight, offsetX = 0, offsetY = 0;
+        
+        if (imgNaturalRatio > containerRatio) {
+            // Image is wider than container (relative to their heights)
+            // Width will be constrained to container width
+            renderedWidth = slideImgRect.width;
+            renderedHeight = renderedWidth / imgNaturalRatio;
+            // Center vertically
+            offsetY = (slideImgRect.height - renderedHeight) / 2;
+        } else {
+            // Image is taller than container (relative to their widths)
+            // Height will be constrained to container height
+            renderedHeight = slideImgRect.height;
+            renderedWidth = renderedHeight * imgNaturalRatio;
+            // Center horizontally
+            offsetX = (slideImgRect.width - renderedWidth) / 2;
+        }
+        
+        // Adjust slide image rect to actual rendered dimensions
+        const adjustedImgRect = {
+            left: slideImgRect.left + offsetX,
+            top: slideImgRect.top + offsetY,
+            right: slideImgRect.left + offsetX + renderedWidth,
+            bottom: slideImgRect.top + offsetY + renderedHeight,
+            width: renderedWidth,
+            height: renderedHeight
+        };
+        
+        // Calculate intersection between title and actual image area
+        const intersectLeft = Math.max(adjustedImgRect.left, titleRect.left);
+        const intersectTop = Math.max(adjustedImgRect.top, titleRect.top);
+        const intersectRight = Math.min(adjustedImgRect.right, titleRect.right);
+        const intersectBottom = Math.min(adjustedImgRect.bottom, titleRect.bottom);
         
         // Convert to percentage of title dimensions for clip-path
         const left = ((intersectLeft - titleRect.left) / titleRect.width) * 100;
@@ -43,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const right = ((intersectRight - titleRect.left) / titleRect.width) * 100;
         const bottom = ((intersectBottom - titleRect.top) / titleRect.height) * 100;
         
-        // Only show white text where title and slideshow intersect
+        // Only show white text where title and active image intersect
         if (intersectRight > intersectLeft && intersectBottom > intersectTop) {
             titleOverlay.style.clipPath = `polygon(${left}% ${top}%, ${right}% ${top}%, ${right}% ${bottom}%, ${left}% ${bottom}%)`;
             titleOverlay.style.visibility = 'visible';
@@ -86,14 +131,14 @@ document.addEventListener('DOMContentLoaded', function () {
             document.documentElement.style.setProperty('--fg', '#000000');
             dateTimeElement.style.cursor = "text";
             contentToShow.forEach(element => element.classList.add('visible'));
-            
+
             if (contentToShow[0] === slideshow) {
                 titleOverlay.textContent = title.textContent;
-                
+
                 // Set up initial styling
                 const titleStyles = window.getComputedStyle(title);
                 Object.keys(titleStyles).forEach(key => {
-                    if (key.startsWith('font') || key.startsWith('letter') || key.startsWith('text') || 
+                    if (key.startsWith('font') || key.startsWith('letter') || key.startsWith('text') ||
                         key === 'padding' || key === 'margin' || key === 'width' || key === 'height') {
                         try {
                             titleOverlay.style[key] = titleStyles[key];
@@ -102,14 +147,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     }
                 });
-                
+
                 updateTitleOverlayClipping();
-                
+
                 if (!slideshowPopped) {
                     populate();
                     slideshowPopped = true;
                 }
-                
+
                 // Add a mutation observer to keep text in sync
                 if (!window.titleObserver) {
                     window.titleObserver = new MutationObserver(() => {
@@ -118,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     window.titleObserver.observe(title, { characterData: true, childList: true, subtree: true });
                 }
-                
+
                 // Update clipping on slideshow changes and animation frames
                 window.addEventListener('resize', updateTitleOverlayClipping);
                 requestAnimationFrame(function updateLoop() {
@@ -136,11 +181,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.titleObserver = null;
             }
             window.removeEventListener('resize', updateTitleOverlayClipping);
-            
+
             // THIS IS THE KEY CHANGE: Reset the familyEnabledByUser flag when toggling content off
             // This ensures the family element won't reappear
             familyEnabledByUser = false;
-            
+
             // Check if any content is still visible
             let anyContentStillVisible = false;
             allContent.forEach(group => {
@@ -150,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
             });
-            
+
             if (!anyContentStillVisible) {
                 // Always hide family when toggling content off
                 family.style.display = 'none';
@@ -271,6 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
             images[currentIndex].classList.remove('active-slide');
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].classList.add('active-slide');
+            updateTitleOverlayClipping();
             // Check the type of the new image and set the interval accordingly
             const isImgGif = images[currentIndex].src.toLowerCase().includes('.gif');
             const intVal = isImgGif ? 3300 : 1000;
@@ -303,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
-    
+
     dateTimeElement.addEventListener('click', function () {
         const familyIsVisible = window.getComputedStyle(family).display !== 'none';
 
