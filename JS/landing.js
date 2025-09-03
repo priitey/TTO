@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const startLength = startStr.length;
             const targetLength = targetStr.length;
             const characterDifference = Math.abs(targetLength - startLength);
-            const adjustedDuration = Math.max(300, characterDifference * 50);
+            const adjustedDuration = Math.max(100, characterDifference * 25);
             let startTime;
 
             const frame = (timestamp) => {

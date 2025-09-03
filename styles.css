@@ -76,16 +76,14 @@ main {
     overscroll-behavior: none;
     overflow: hidden;
     background: transparent;
-    /* Make main a positioned container that fills the viewport */
     position: relative;
     height: 100vh;
     div#family {
         display: none;
         background: transparent;
         position: absolute;
-        /* Use inset shorthand to cover the parent (main) */
         inset: 0;
-        z-index: 999; /* Ensure it's above the grid */
+        z-index: 999;
         img {
             width: 100%;
             height: 100%;
@@ -94,9 +92,9 @@ main {
     }
     > #grid-container {
         display: grid;
-        padding: 1em;
-        gap: 1em;
-        grid-template-columns: repeat(9, 1fr);
+        padding: 30px;
+        gap: 30px;
+        grid-template-columns: repeat(10, 1fr);
         grid-template-rows: repeat(9, 1fr);
         width: 100%;
         height: 100%;
@@ -137,11 +135,11 @@ main {
         }
         > div#contact {
             justify-content: flex-end;
-            grid-column: 8 / span 1;
+            grid-column: 9 / span 1;
         }
         > div#date-time {
             justify-content: flex-end;
-            grid-column: 9 / span 1;
+            grid-column: 10 / span 1;
         }
         > div#title {
             background: transparent;
@@ -154,7 +152,7 @@ main {
             margin: 0;
             cursor: pointer;
             transform: none;
-            grid-column: 3 / span 5;
+            grid-column: 3 / span 6;
             grid-row: 5 / span 1;
             width: 100%;
             height: max-content;
@@ -171,7 +169,7 @@ main {
             background: transparent;
             border: 15px none red;
             box-sizing: content-box;
-            color: var(--bg); /* White text */
+            color: var(--bg);
             font-size: var(--body-font);
             font-family: 'Geist';
             letter-spacing: 0.239rem;
@@ -200,7 +198,7 @@ main {
         > span#ack-contact {
             z-index: 99999;
             display: none;
-            grid-column: 4 / span 3;
+            grid-column: 4 / span 4;
         }
         /* --- Common Text Pane Styles --- */
         > span#what-is-tto,
@@ -260,7 +258,7 @@ main {
             flex-direction: row;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 10px;
+            gap: 30px ;
             margin: 0;
             padding: 10px 0px 0px 0px;
             grid-row: 1 / span 4;
@@ -300,10 +298,9 @@ main {
         > span#matt-label {
             z-index: 99999;
             display: none;
-            grid-column: 5 / span 3;
+            grid-column: 6 / span 3;
             grid-row: 5 / span 1;
             font-size: var(--body-font);
-            padding-left: calc(16% + 5px);
         }
         > span#lucas-label.visible,
         > span#matt-label.visible {
@@ -445,9 +442,8 @@ main {
         z-index: 99999;
         display: none;
         grid-column: 6 / span 5;
-        grid-row: 5 / span 1;
+        grid-row: 6 / span 2;
         font-size: var(--body-font);
-        padding-left: calc(11%);
     }
 
 
