@@ -1,65 +1,24 @@
 {
-    "test1": {
-        "title": "Test 01",
+    "showcase": {
+        "title": "Works Showcase Reel",
         "tools": "InDesign, Photoshop, Figma",
-        "description": "Description here.",
+        "description": "A showcase of works by TTO.",
         "links": [
             {"text": "", "url": ""}
         ],
         "images": [
-            {"path": "ASSETS/IMAGES/TESTGALLERY/5PointedPear.jpg", "alt": "A five pointed pear cross-section."}
-        ],
-        "videos": [
-            {"path": "", "type": "", "alt": ""}
-        ],
-        "iframe": [
-            {"id": "", "title": "", "width": "", "height": "", "src": ""}
-        ]
-    },
-    "test2": {
-        "title": "Test 02",
-        "tools": "InDesign, Photoshop, Figma",
-        "description": "Description here.",
-        "links": [
-            {"text": "", "url": ""}
-        ],
-        "images": [
-            {"path": "ASSETS/IMAGES/TESTGALLERY/carWash.gif", "alt": "A POV video of a car getting washed in a commercial car wash facility."}
-        ],
-        "videos": [
-            {"path": "", "type": "", "alt": ""}
-        ],
-        "iframe": [
-            {"id": "", "title": "", "width": "", "height": "", "src": ""}
-        ]
-    },
-    "test3": {
-        "title": "Test 03",
-        "tools": "InDesign, Photoshop, Figma",
-        "description": "Description here.",
-        "links": [
-            {"text": "", "url": ""}
-        ],
-        "images": [
-            {"path": "ASSETS/IMAGES/TESTGALLERY/jc.jpg", "alt": "A painting of Jesus Christ by Alan Christ."}
-        ],
-        "videos": [
-            {"path": "", "type": "", "alt": ""}
-        ],
-        "iframe": [
-            {"id": "", "title": "", "width": "", "height": "", "src": ""}
-        ]
-    },
-    "test4": {
-        "title": "Test 04",
-        "tools": "InDesign, Photoshop, Figma",
-        "description": "Description here.",
-        "links": [
-            {"text": "", "url": ""}
-        ],
-        "images": [
-            {"path": "ASSETS/IMAGES/TESTGALLERY/cashRoll.gif", "alt": "A video of a BMX athlete performing an aerial trick."}
-        ],
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_01.jpg", "alt": "A graphic embossed on metal. It reads 'Brother & Stone'."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_02.jpg", "alt": "A 100ml perfume bottle with a chartreuse-green label. The brand name is 'Millie and Frank'."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_03.jpg", "alt": "A label of a muted-brown paper-like material. The brand name is 'Brother & Stone'."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_04.jpg", "alt": "A 10ml perfume bottle with an amber liquid inside. The label reads '88 Keys'."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_05.jpg", "alt": "A poster with a strong grid layout of stones overlaid by large sans-serif text. It is for University of North Dakota's Minerology collection."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_06.jpg", "alt": "An dual toned poster of earth-green both saturated and desaturated. It is for a photography work/s by Lloyd Godman."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_07.jpg", "alt": "An in-situ photo of a label and clip attached to a coat. The blue label read 'Maier Haus' and 'South Wing'."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_08.jpg", "alt": "A two-page spread of a book showcasing an installation within a gallery space. The installation is made of draped and colourful fabrics."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_09.jpg", "alt": "A two-page spread of a book that details artists and their respective works. A caption, description and the material information of the art are included."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_10.jpg", "alt": "The front cover of a printed publication with a yellow sleeve, banded across the lower third of the front cover. It is for RMIT's 'Drawn In First Editio' 2023."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_11.jpg", "alt": "A collage of labels/fliers in a myriad of affable colours. They simply read 'RMIT Drawing Studio 2023 Graduates'."},
+            {"path": "ASSETS/IMAGES/01/TTO_Slides_12.jpg", "alt": "A close-up photo of interior."}
         "videos": [
             {"path": "", "type": "", "alt": ""}
         ],

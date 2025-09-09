@@ -331,7 +331,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Start the slideshow loop
         setTimeout(nextSlide, initialIntVal);
     }
-
     // TIME & FAMILY LOGIC HERE
     const family = document.getElementById('family');
     const dateTimeElement = document.querySelector('#date-time p');

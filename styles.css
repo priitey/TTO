@@ -449,7 +449,7 @@ main {
 
     /* --- CONTACT CONTENT: MOBILE LAYOUT --- */
     main > #grid-container > span#reach-out {
-        grid-column: 2 / -1;
+        grid-column: 2 / 10;
         grid-row: 2 / span 1;
         text-align: left;
         padding: 0;
