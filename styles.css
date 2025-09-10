@@ -320,15 +320,14 @@ main {
         > span#ack-contact {
             padding: 0;
             grid-row: 9 / span 1;
+            align-self: flex-end;
         }
         > span#reach-out {
             margin: 10px 0px 0px 0px;
-            grid-row: 1 / span 1;
+            grid-row: 1 / span 2;
         }
         > span#lucas-deets,
-        > span#matt-deets,
-        > span#lucas-hash,
-        > span#matt-hash {
+        > span#matt-deets {
             z-index: 99999;
             display: none;
             grid-row: 5 / span 2;
@@ -336,21 +335,11 @@ main {
             color: var(--fg);
         }
         span#lucas-deets.visible,
-        span#matt-deets.visible,
-        span#lucas-hash.visible,
-        span#matt-hash.visible {
+        span#matt-deets.visible {
             display: block;
-        }
-        > span#lucas-hash {
-            grid-column: 3 / span 1;
-            text-align: right;
         }
         > span#lucas-deets {
             grid-column: 4 / span 2;
-        }
-        > span#matt-hash {
-            grid-column: 5 / span 1;
-            text-align: right;
         }
         > span#matt-deets {
             grid-column: 6 / span 2;
@@ -457,10 +446,6 @@ main {
         text-align: left;
         padding: 0;
         margin: 0;
-    }
-    main > #grid-container > span#lucas-hash,
-    main > #grid-container > span#matt-hash {
-        display: none!important; /* Hide hash marks for mobile*/
     }
     main > #grid-container > span#lucas-deets {
         grid-column: 2 / span 4;
