@@ -318,6 +318,7 @@ main {
         }
         > span#ack-about,
         > span#ack-contact {
+            margin-bottom: 10px;
             padding: 0;
             grid-row: 9 / span 1;
             align-self: flex-end;
