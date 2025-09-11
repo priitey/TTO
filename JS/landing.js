@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0;
     let slideshowPopped = false;
 
-    // Add a state variable to track whether family should be shown
     let familyEnabledByUser = false;
 
     const allContent = [
