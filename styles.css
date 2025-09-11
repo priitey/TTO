@@ -475,7 +475,7 @@ main {
         grid-row: 5 / span 1;
     }
     main > #grid-container > span#by- {
-        grid-column: 2 / span 2;
+        grid-column: 2 / span 3;
         grid-row: 8 / span 1;
         align-self: flex-end;
         margin-left: 0;
