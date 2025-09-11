@@ -288,6 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
         titleOverlay.addEventListener('mouseover', () => animateText(fullStr));
         titleOverlay.addEventListener('mouseout', () => animateText(baseStr));
     }
+    // CREDITS ANIMATION LOGIC HERE
     if (byEl && charlesEl && peterEl) {
         let charlesAnimated = false;
         let peterAnimated = false;
@@ -343,6 +344,8 @@ document.addEventListener('DOMContentLoaded', function () {
         populateSlideshow(projects);
     }
     function populateSlideshow(obj) {
+        const imageElements = [];
+
         for (const projectKey in obj) {
             const projectData = obj[projectKey];
 
@@ -351,9 +354,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 projectImg.className = "showcase-img";
                 projectImg.src = imageData.path;
                 projectImg.alt = imageData.alt;
-                projectsContainer.appendChild(projectImg);
+                imageElements.push(projectImg);
             });
         }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const shuffledImages = shuffleArray(imageElements);
+        shuffledImages.forEach(img => {
+            projectsContainer.appendChild(img);
+        });
         startAutomaticSlideshow();
     }
     function startAutomaticSlideshow() {
