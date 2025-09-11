@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactCnt = document.querySelectorAll('.contact-content');
     const title = document.getElementById('title');
     const titleOverlay = document.getElementById('title-overlay');
+    const byEl = document.getElementById('by-');
+    const charlesEl = document.getElementById('charles');
+    const peterEl = document.getElementById('peter');
 
     const slideshow = document.getElementById('slideshow');
     const slideshowImg = document.querySelector('#projects-container img.active-slide');
@@ -237,6 +240,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const baseStr = "TTO";
     const fullStr = "TTO (WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
     const mobStr = "(WORKS BY LUCAS SAKELL & MATTHEW FRANCIS)";
+    // links to charles' and prw.studio here
+    const charlesStr = "Charles";
+    const peterStr = "Peter";
     if (title && isMobile) {
         title.textContent = mobStr;
     } else if (title && !isMobile) {
@@ -281,6 +287,49 @@ document.addEventListener('DOMContentLoaded', function () {
         title.addEventListener('mouseout', () => animateText(baseStr));
         titleOverlay.addEventListener('mouseover', () => animateText(fullStr));
         titleOverlay.addEventListener('mouseout', () => animateText(baseStr));
+    }
+    if (byEl && charlesEl && peterEl) {
+        let charlesAnimated = false;
+        let peterAnimated = false;
+
+        const animateTextOnce = (element, targetStr, hasAnimated, flagSetter) => {
+            if (hasAnimated) return; // Exit if already animated
+            
+            flagSetter(true); // Set the flag to prevent re-animation
+            
+            const startStr = element.textContent.replace('_', '');
+            const startLength = startStr.length;
+            const targetLength = targetStr.length;
+            const characterDifference = Math.abs(targetLength - startLength);
+            const adjustedDuration = Math.max(100, characterDifference * 25);
+            let startTime;
+            let animationFrameId;
+
+            const frame = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / adjustedDuration, 1);
+                
+                const currentLength = Math.floor(startLength + (targetLength - startLength) * progress);
+                let newText = targetStr.substring(0, currentLength);
+                
+                if (progress < 1) {
+                    newText += '_';
+                }
+                
+                element.textContent = newText;
+                
+                if (progress < 1) {
+                    animationFrameId = requestAnimationFrame(frame);
+                }
+            };
+            animationFrameId = requestAnimationFrame(frame);
+        };
+
+        byEl.addEventListener('mouseover', () => {
+            animateTextOnce(charlesEl, charlesStr, charlesAnimated, (value) => charlesAnimated = value);
+            animateTextOnce(peterEl, peterStr, peterAnimated, (value) => peterAnimated = value);
+        });
     }
 
     // SLIDESHOW LOGIC HERE

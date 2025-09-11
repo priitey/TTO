@@ -205,11 +205,16 @@ main {
             display: none;
             grid-column: 4 / span 4;
         }
+        >span#by- {
+            z-index: 99999;
+            display: none;
+        }
         /* --- Common Text Pane Styles --- */
         > span#what-is-tto,
         > span#ack-about,
         > span#reach-out,
-        > span#ack-contact {
+        > span#ack-contact,
+        > span#by- {
             font-size: var(--body-font);
             color: var(--fg);
         }
@@ -221,7 +226,8 @@ main {
         > span#what-is-tto.visible,
         > span#ack-about.visible,
         > span#reach-out.visible,
-        > span#ack-contact.visible {
+        > span#ack-contact.visible,
+        > span#by-.visible {
             display: block;
         }
         /* --- Individual Pane Styles --- */
@@ -344,6 +350,14 @@ main {
         }
         > span#matt-deets {
             grid-column: 6 / span 2;
+        }
+        > span#by- {
+            grid-column: 1 / span 2;
+            grid-row: 9 / span 1;
+            align-self: flex-end;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            cursor: pointer;
         }
     }
 }
