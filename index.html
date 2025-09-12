@@ -1,112 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- STILL NEED TO TRY IMPLEMENTING:
+  <!-- STILL NEED TO TRY IMPLEMENTING:
      + Dynamic slideshow duration (gif length)
      + Increase click area of title element
      + Confirm tracking (convert 20(?) to rem) -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>This Thing of Ours – Website of TTO studio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="T T O is the partnership of Lucas Sakell and Matthew Francis. With an emphasis on storied design and meaningful creative solutions."
+    />
+    <title>T T O</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
-
+  <body>
     <main>
-        <div id="family">
-            <img src="ASSETS/IMAGES/the-sopranos.webp" width="1600" height="1101">
+      <div id="family">
+        <img src="ASSETS/IMAGES/the-sopranos.webp" width="1600" height="1101" />
+      </div>
+
+      <div id="grid-container">
+        <!--HEADER CONTENT BELOW-->
+        <div id="tto">
+          <p>TTO</p>
         </div>
-
-        <div id="grid-container">
-            <!--HEADER CONTENT BELOW-->
-            <div id="tto">
-                <p>TTO</p>
-            </div>
-            <div id="about">
-                <p>ABOUT</p>
-            </div>
-            <div id="contact">
-                <p>CONTACT</p>
-            </div>
-            <div id="date-time"><p></p></div>
-            <!--HEADER CONTENT ABOVE-->
-
-            <!--TTO CONTENT BELOW-->
-             <div id="title"></div>
-            <div id="slideshow">
-                <div id="projects-container"></div>
-            </div>
-            <div id="title-overlay"></div>
-            <!--TTO CONTENT ABOVE-->
-
-            <!--ABOUT CONTENT BELOW-->
-            <div id="portraits" class="about-content">
-                <figure>
-                    <img id="lucas" src="ASSETS/IMAGES/lucas.png" width="606" height="492"
-                        alt="A black & white portrait of Lucas Sakell: one half of TTO's design partnership.">
-                    <figcaption>Lucas Sakell</figcaption>
-                </figure>
-                <figure>
-                    <img id="matt" src="ASSETS/IMAGES/matt.png" width="606" height="492"
-                        alt="A black & white portrait of Matthew Papaleo: one half of TTO's design partnership.">
-                    <figcaption>Matthew Francis</figcaption>
-                </figure>
-            </div>
-            <span id="lucas-label" class="about-content">Lucas Sakell</span>
-            <span id="matt-label" class="about-content">Matthew Francis</span>
-            <span id="what-is-tto" class="about-content">T T O is the partnership of Lucas Sakell and Matthew Francis.
-                With an emphasis on
-                storied design and meaningful
-                creative solutions, we aim to create memorable works that last.<br>
-                <br>
-                SERVICES<br>
-                Brand Identity<br>
-                Art Direction<br>
-                Naming<br>
-                Packaging<br>
-                Print Design<br>
-                Publications<br>
-                Signage/Wayfinding<br>
-                Website Design
-            </span>
-            <span id="ack-about"class="about-content">
-                TTO acknowledges the Wurundjeri people of the Kulin nation, the traditional custodians of this land,
-                and pay our respect to the Wurundjeri elders, past, present and emerging.
-            </span>
-            <!--ABOUT CONTENT ABOVE-->
-
-            <!--CONTACT CONTENT BELOW-->
-            <span id="reach-out" class="contact-content">
-                We collaborate with both new and established brands and individuals who value their craft as much as we do.
-                Get in touch to discuss your next project, explore collaboration opportunities, learn more about our work and approach,
-                or simply have a quick chat.
-                <br><br>
-                <a href="https://www.instagram.com/tto.works/">Instagram</a>
-                <br>
-                <a href="">LinkedIn</a>
-            </span>
-            <span id="lucas-deets" class="contact-content">
-                Lucas Sakell<br>
-                <a href="mailto:lucas@tto.works">lucas@tto.works</a><br>
-            </span>
-            <span id="matt-deets" class="contact-content">
-                Matthew Francis<br>
-                <a href="mailto:matthew@tto.works">matthew@tto.works</a><br>
-            </span>
-            <span id="ack-contact"class="contact-content">
-                TTO acknowledges the Wurundjeri people of the Kulin nation, the traditional custodians of this land,
-                and pay our respect to the Wurundjeri elders, past, present and emerging.
-            </span>
-            <span id="by-" class="contact-content">
-                Design by <a id="charles" href="https://www.instagram.com/charlescharl3s/"></a><br>
-                Website by <a id="peter" href="https://prw.studio/"></a>
-            </span>
-            <!--CONTACT CONTENT ABOVE-->
+        <div id="about">
+          <p>ABOUT</p>
         </div>
+        <div id="contact">
+          <p>CONTACT</p>
+        </div>
+        <div id="date-time"><p></p></div>
+        <!--HEADER CONTENT ABOVE-->
+
+        <!--TTO CONTENT BELOW-->
+        <div id="title"></div>
+        <div id="slideshow">
+          <div id="projects-container"></div>
+        </div>
+        <div id="title-overlay"></div>
+        <!--TTO CONTENT ABOVE-->
+
+        <!--ABOUT CONTENT BELOW-->
+        <div id="portraits" class="about-content">
+          <figure>
+            <img
+              id="lucas"
+              src="ASSETS/IMAGES/lucas.png"
+              width="606"
+              height="492"
+              alt="A black & white portrait of Lucas Sakell: one half of TTO's design partnership."
+            />
+            <figcaption>Lucas Sakell</figcaption>
+          </figure>
+          <figure>
+            <img
+              id="matt"
+              src="ASSETS/IMAGES/matt.png"
+              width="606"
+              height="492"
+              alt="A black & white portrait of Matthew Papaleo: one half of TTO's design partnership."
+            />
+            <figcaption>Matthew Francis</figcaption>
+          </figure>
+        </div>
+        <span id="lucas-label" class="about-content">Lucas Sakell</span>
+        <span id="matt-label" class="about-content">Matthew Francis</span>
+        <span id="what-is-tto" class="about-content"
+          >T T O is the partnership of Lucas Sakell and Matthew Francis. With an
+          emphasis on storied design and meaningful creative solutions, we aim
+          to create memorable works that last.<br />
+          <br />
+          SERVICES<br />
+          Brand Identity<br />
+          Art Direction<br />
+          Naming<br />
+          Packaging<br />
+          Print Design<br />
+          Publications<br />
+          Signage/Wayfinding<br />
+          Website Design
+        </span>
+        <span id="ack-about" class="about-content">
+          TTO acknowledges the Wurundjeri people of the Kulin nation, the
+          traditional custodians of this land, and pay our respect to the
+          Wurundjeri elders, past, present and emerging.
+        </span>
+        <!--ABOUT CONTENT ABOVE-->
+
+        <!--CONTACT CONTENT BELOW-->
+        <span id="reach-out" class="contact-content">
+          We collaborate with both new and established brands and individuals
+          who value their craft as much as we do. Get in touch to discuss your
+          next project, explore collaboration opportunities, learn more about
+          our work and approach, or simply have a quick chat.
+          <br /><br />
+          <a href="https://www.instagram.com/tto.works/">Instagram</a>
+          <br />
+          <a href="https://www.linkedin.com/company/ttoworks">Linkedin</a>
+        </span>
+        <span id="lucas-deets" class="contact-content">
+          Lucas Sakell<br />
+          <a href="mailto:lucas@tto.works">lucas@tto.works</a><br />
+        </span>
+        <span id="matt-deets" class="contact-content">
+          Matthew Francis<br />
+          <a href="mailto:matthew@tto.works">matthew@tto.works</a><br />
+        </span>
+        <span id="ack-contact" class="contact-content">
+          TTO acknowledges the Wurundjeri people of the Kulin nation, the
+          traditional custodians of this land, and pay our respect to the
+          Wurundjeri elders, past, present and emerging.
+        </span>
+        <span id="by-" class="contact-content about-content">
+          Design by
+          <a id="charles" href="https://www.instagram.com/charlescharl3s/"
+            >Charles Hoppe</a
+          ><br />
+          Website by <a id="peter" href="https://prw.studio/">Peter White</a>
+        </span>
+        <!--CONTACT CONTENT ABOVE-->
+      </div>
     </main>
 
     <script src="JS/landing.js"></script>
-</body>
-
+  </body>
 </html>
