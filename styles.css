@@ -486,18 +486,3 @@ main {
 .hidden {
     display: none;
 }
-
-@keyframes expand-and-contract {
-    0% {
-        max-width: 34px; /* Start at the initial width */
-    }
-    50% {
-        max-width: 800px; /* Expand to full width */
-    }
-    80% {
-        max-width: 800px; /* Hold at full width to create a pause */
-    }
-    100% {
-        max-width: 34px; /* Return to the initial width */
-    }
-}
