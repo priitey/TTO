@@ -133,7 +133,7 @@ main {
         > div#tto {
             justify-content: flex-start;
             grid-column: 1 / span 1;
-            letter-spacing: 0.5em;
+            letter-spacing: 3.2px;
         }
         > div#about {
             justify-content: flex-start;
@@ -155,7 +155,7 @@ main {
             color: var(--fg);
             font-size: var(--body-font);
             font-family: 'Geist';
-            letter-spacing: 0.5em;
+            letter-spacing: 3.2px;
             position: relative;
             padding: 0;
             margin: 0;
@@ -181,7 +181,7 @@ main {
             color: var(--bg);
             font-size: var(--body-font);
             font-family: 'Geist';
-            letter-spacing: 0.5em;
+            letter-spacing: 3.2px;
             position: absolute;
             padding: 0;
             margin: 0;
@@ -376,7 +376,7 @@ main {
         grid-template-columns: repeat(10, 1fr);
         grid-template-rows: repeat(9, 1fr);
         padding: 0.8em;
-        gap: 0.5em;
+        gap: 3.2px;
         /*overflow-wrap: break-word;
         word-break: break-all;*/
     }
@@ -412,7 +412,7 @@ main {
         width: 100%;
         max-width: 100%;
         white-space: normal;
-        letter-spacing: 0.5em;
+        letter-spacing: 3.2px;
         align-self: center;
         transition: none;
     }
@@ -430,7 +430,7 @@ main {
         grid-row: 2 / span 3;
         padding: 0 0 0px 0;
         margin: 0;
-        gap: 0.5em;
+        gap: 3.2px;
     }
     main > #grid-container > span#what-is-tto {
         grid-column: 2 / span 8;
