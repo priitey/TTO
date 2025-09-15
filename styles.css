@@ -117,7 +117,7 @@ main {
             grid-row: 1 / span 1;
             font-size: var(--body-font);
             color: var(--fg);
-            letter-spacing: 0.025rem;
+            /*letter-spacing: 0.025rem;*/
         }
         > div#tto p,
         > div#about p,
@@ -133,7 +133,7 @@ main {
         > div#tto {
             justify-content: flex-start;
             grid-column: 1 / span 1;
-            letter-spacing: 0.239rem;
+            letter-spacing: 0.5em;
         }
         > div#about {
             justify-content: flex-start;
@@ -155,7 +155,7 @@ main {
             color: var(--fg);
             font-size: var(--body-font);
             font-family: 'Geist';
-            letter-spacing: 0.239rem;
+            letter-spacing: 0.5em;
             position: relative;
             padding: 0;
             margin: 0;
@@ -181,7 +181,7 @@ main {
             color: var(--bg);
             font-size: var(--body-font);
             font-family: 'Geist';
-            letter-spacing: 0.239rem;
+            letter-spacing: 0.5em;
             position: absolute;
             padding: 0;
             margin: 0;
@@ -412,7 +412,7 @@ main {
         width: 100%;
         max-width: 100%;
         white-space: normal;
-        letter-spacing: 0.239em;
+        letter-spacing: 0.5em;
         align-self: center;
         transition: none;
     }
