@@ -127,6 +127,8 @@ main {
             margin: 0;
             padding: 0;
             height: fit-content;
+            white-space: nowrap;
+            overflow: visible;
         }
         > div#tto {
             justify-content: flex-start;
@@ -143,8 +145,10 @@ main {
         }
         > div#date-time {
             justify-content: flex-end;
-            grid-column: 10 / span 1;
+            grid-column: 10 / span 2;
             text-align: right;
+            white-space: nowrap;
+            overflow: hidden;
         }
         > div#title {
             background: transparent;
