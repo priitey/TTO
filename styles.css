@@ -383,25 +383,6 @@ main {
   }
 }
 
-@container grid (max-width: 768px) and (max-height: 700px) {
-  main > #grid-container {
-    height: 100%; /* Make sure height is definite before queries apply */
-    /* Allow more rows for shorter screens */
-    grid-template-rows: repeat(11, 1fr);
-     border: 5px solid red;
-  }
-
-  /* Move acknowledgment and credits lower */
-  main > #grid-container > span#ack-about,
-  main > #grid-container > span#ack-contact {
-    grid-row: 10 / span 1;
-  }
-
-  main > #grid-container > span#by- {
-    grid-row: 11 / span 1;
-  }
-}
-
 @container grid (max-width: 768px) {
   /* --- HEADER: MOBILE LAYOUT --- */
   main > #grid-container > div#tto,
@@ -502,6 +483,26 @@ main {
     grid-row: 8 / span 1;
     align-self: flex-end;
     margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) and (max-height: 700px) {
+  main {
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+  main > #grid-container {
+    height: 900px; /* Fixed height to allow content to extend beyond viewport */
+    grid-template-rows: repeat(11, 1fr);
+  }
+
+  main > #grid-container > span#ack-about,
+  main > #grid-container > span#ack-contact {
+    grid-row: 12 / span 1;
+  }
+
+  main > #grid-container > span#by- {
+    grid-row: 11 / span 1;
   }
 }
 
