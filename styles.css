@@ -378,8 +378,6 @@ main {
     grid-template-rows: repeat(9, 1fr);
     padding: 0.8em;
     gap: 3.2px;
-    /*overflow-wrap: break-word;
-        word-break: break-all;*/
   }
 }
 
